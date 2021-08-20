@@ -1,3 +1,4 @@
+const form = document.querySelector('[data-js="form"]')
 const inputName = document.querySelector('[data-js="name"]')
 
 inputName.addEventListener('input', (e) => {
@@ -17,3 +18,21 @@ function capitalize(string) {
   })
   return newArr.join(' ')
 }
+
+const colorName = ["Azul", "Verde", "Vermelho", "Amarelo", "Roxo"]
+const colorCode = ["#0000cc", "#33cc33", "#ff0000", "#ffff00", "#993399"]
+
+let selectList = document.createElement("select");
+selectList.id = "mySelect";
+form.appendChild(selectList);
+
+colorName.map((name,index) => {
+  const option = document.createElement("option");
+  option.value = colorCode[index];
+  option.text = name;
+  selectList.appendChild(option);
+})
+
+selectList.addEventListener('change', (e) => {
+  document.querySelector('body').style.background = e.target.value;
+})
