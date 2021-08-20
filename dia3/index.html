@@ -9,13 +9,27 @@
   <body>
     <div data-js="app">
       <form data-js="form">
-        <input
-          data-js="name"
-          type="text"
-          id="name"
-          placeholder="Nome"
-        />
+        <input data-js="url" type="text" id="name" placeholder="Imagem (URL)" /><br />
+        <input data-js="marca" type="text" id="name" placeholder="Marca/Modelo" /><br />
+        <input data-js="ano" type="number" id="name" placeholder="Ano" /><br />
+        <input data-js="placa" type="text" id="name" placeholder="Placa" /><br />
+        <input data-js="cor" type="text" id="name" placeholder="Cor" /><br />
+        <button data-js="button" type="submit">Enviar</button>
       </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Imagem</th>
+            <th>Marca/Modelo</th>
+            <th>Ano</th>
+            <th>Placa</th>
+            <th>Cor</th>
+          </tr>
+        </thead>
+        <tbody data-js="tbody">
+        </tbody>
+        </table>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
