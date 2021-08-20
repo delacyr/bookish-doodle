@@ -1,3 +1,4 @@
+const app = document.querySelector('[data-js="app"]')
 const form = document.querySelector('[data-js="form"]')
 const inputName = document.querySelector('[data-js="name"]')
 
@@ -22,17 +23,42 @@ function capitalize(string) {
 const colorName = ["Azul", "Verde", "Vermelho", "Amarelo", "Roxo"]
 const colorCode = ["#0000cc", "#33cc33", "#ff0000", "#ffff00", "#993399"]
 
-let selectList = document.createElement("select");
-selectList.id = "mySelect";
-form.appendChild(selectList);
+const br = document.createElement('br')
+const selectList = document.createElement("select")
+selectList.id = "choice"
+selectList.multiple = true
+form.appendChild(br)
+form.appendChild(selectList)
 
 colorName.map((name,index) => {
-  const option = document.createElement("option");
-  option.value = colorCode[index];
-  option.text = name;
-  selectList.appendChild(option);
+  const option = document.createElement("option")
+  option.value = colorCode[index]
+  option.text = name
+  selectList.appendChild(option)
 })
 
-selectList.addEventListener('change', (e) => {
-  document.querySelector('body').style.background = e.target.value;
+const select = document.querySelector('select')
+
+select.addEventListener('change', (e) => {
+  const selected = [...select.selectedOptions].map((option) => option.value)
+
+  const unselected = [...select.options].filter(option => !selected.includes(option.value))
+
+  console.log(selected)
+  console.log(unselected.map(option => option.value))
+
+  selected.map((option) => {
+    const color = document.createElement("div")
+    color.setAttribute("data-js", option)
+    color.style.backgroundColor = option
+    color.style.width = "100px"
+    color.style.height = "20px"
+    color.textContent = option
+    form.appendChild(color)
+  })
+
+  unselected.map((option) => {
+    const color = document.querySelector(`[data-js="${option.value}"]`)
+    console.log(color)
+  })
 })
