@@ -42,23 +42,23 @@ const select = document.querySelector('select')
 select.addEventListener('change', (e) => {
   const selected = [...select.selectedOptions].map((option) => option.value)
 
-  const unselected = [...select.options].filter(option => !selected.includes(option.value))
+  let colors = document.querySelector('[data-js="colors"]')
 
-  console.log(selected)
-  console.log(unselected.map(option => option.value))
+  if (colors){
+    colors.remove()
+  }
+
+  colors = document.createElement('div')
+  colors.setAttribute('data-js', 'colors')
+  form.appendChild(colors)
 
   selected.map((option) => {
-    const color = document.createElement("div")
-    color.setAttribute("data-js", option)
+    const color = document.createElement('div')
+    color.setAttribute('data-js', option)
     color.style.backgroundColor = option
     color.style.width = "100px"
     color.style.height = "20px"
     color.textContent = option
-    form.appendChild(color)
-  })
-
-  unselected.map((option) => {
-    const color = document.querySelector(`[data-js="${option.value}"]`)
-    console.log(color)
+    colors.appendChild(color)
   })
 })
