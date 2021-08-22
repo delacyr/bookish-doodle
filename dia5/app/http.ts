@@ -1,9 +1,17 @@
-const request = (url, options) =>
+type Car = {
+  image?: string,
+  brandModel?: string,
+  year?: number,
+  plate: string,
+  color?: string,
+}
+
+const request = (url: RequestInfo, options?: RequestInit) =>
   fetch(url, options)
     .then(r => r.json())
     .catch(e => ({ error: true, message: e.message }))
 
-const createRequest = (method) => (url, data) => request(url, {
+const createRequest = (method: string) => (url: RequestInfo, data: Car) => request(url, {
   method,
   headers: {
     'content-type': 'application/json',
